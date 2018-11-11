@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>C# Primer 习题解答（第5版）</title>
+    <script src="/js/jquery-1.7.1.js" type="text/javascript"></script><!--在模板文件中使用外部文件时一定要用决对路径-->
+    <script type="text/javascript">
+        $(function () {
+
+            loadComment();//加载评论
+            $("#btn").click(function () {
+                var msg = $("#txtContent").val();
+                if (msg != "") {
+                    $.post("/ashx/BookComment.ashx", { "action": "postComment", "msg": msg, "bookId": 4942 }, function (data) {
+                        if (data == "yes") {
+                            alert("评论成功");
+                        }
+                    });
+                } else {
+                    alert("请输入内容!!")
+                }
+            });
+        });
+
+        function loadComment() {
+            $.post("/ashx/BookComment.ashx", { "action": "load", "bookId": 4942 }, function (data) {
+                var comments = $.parseJSON(data);
+                for (var i = 0; i < comments.length; i++) {
+                    $("<li>" + comments[i].CreateDateTime + ":" + comments[i].Msg + "</li>").appendTo("#txtComment");
+                }
+
+            });
+        }
+    </script>
+</head>
+<body>
+
+C++ Primer(第4版)是C++大师Stanley B. Lippman丰富的实践经验和C++标准委员会原负责人Josée Lajoie对C++标准深入理解的完美结合，更加入了C++先驱Barbara E. Moo在C++教学方面的真知灼见，是初学者的最佳C++指南，而且对于中高级程序员，也是不可或缺的参考书。本书正是这部久负盛名的C++经典教程的配套习题解答。书中提供了C++ Primer(第4版)中所有习题的参考答案。<br>　　本书对使用C++ Primer(第4版)学习C++程序设计语言的读者是非常理想的参考书。
+<br />
+<ul id="txtComment">
+
+</ul>
+<textarea id="txtContent" rows="20" cols="60"></textarea><br />
+<input type="button" value="发布评论" id="btn" /><br />
+<a href="/Cart.aspx?bookId=4942"><img src="/Images/Common/buy.gif" /></a>
+
+</body>
+</html>

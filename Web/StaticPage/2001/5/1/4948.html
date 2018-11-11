@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>深度探索 C++ 对象模型</title>
+    <script src="/js/jquery-1.7.1.js" type="text/javascript"></script><!--在模板文件中使用外部文件时一定要用决对路径-->
+    <script type="text/javascript">
+        $(function () {
+
+            loadComment();//加载评论
+            $("#btn").click(function () {
+                var msg = $("#txtContent").val();
+                if (msg != "") {
+                    $.post("/ashx/BookComment.ashx", { "action": "postComment", "msg": msg, "bookId": 4948 }, function (data) {
+                        if (data == "yes") {
+                            alert("评论成功");
+                        }
+                    });
+                } else {
+                    alert("请输入内容!!")
+                }
+            });
+        });
+
+        function loadComment() {
+            $.post("/ashx/BookComment.ashx", { "action": "load", "bookId": 4948 }, function (data) {
+                var comments = $.parseJSON(data);
+                for (var i = 0; i < comments.length; i++) {
+                    $("<li>" + comments[i].CreateDateTime + ":" + comments[i].Msg + "</li>").appendTo("#txtComment");
+                }
+
+            });
+        }
+    </script>
+</head>
+<body>
+
+本书重点：探索“对象导向程序所支持的C++对象模型”下的程序行为。对于“对象导向性质之基础实现技术”以及“各种性质背后的隐含利益交换”提供一个清楚的认识。检验由程序变形所带来的效率冲击。提供丰富的程序范例、图片，以及对象导向观念和底层对象模型之间的效率测量。<br>&nbsp;&nbsp;&nbsp;&nbsp;C++成山似海的书籍堆中，这一本不是婴幼儿奶粉，也不是较大婴儿奶粉，它是成人专用的低脂高钙特殊奶粉。<br>&nbsp;&nbsp;&nbsp;&nbsp;对于C++底层机制感兴趣的读者，这本书会给你“漫卷诗书喜欲狂”的感觉。<br>&nbsp;&nbsp;&nbsp;&nbsp;了解C++ Object Model，是学习Component Object Model的最短路线。<br>&nbsp;&nbsp;&nbsp;&nbsp;如果你是一位C++程序员，渴望对于底层知识获得一个完整的了解，那么Inside The C++ Object Model正适合你。<br>&nbsp;&nbsp;&nbsp;&nbsp;关于作者：Stanley Lippman目前是华特迪斯尼主题动画公司（Walt Disney Feature Animation）的主要软件工程师。他曾经在AT&T贝尔实验室领导cfront 3.0和2.1版的编译器开发小组。他也是贝尔实验室中由Bjame Stroustrup所领导的Foundation专案组中的一员，负责对象模型并研究C++程序开发环境。Stan著有极为成功的C++ Primer一书，也发表过许多C++方面的论文。Stan最近刚从C++ Report的编辑位置上“退隐”，他曾在那个位置上做了4年。他的C++论述遍及全球。<br>&nbsp;&nbsp;&nbsp;&nbsp;关于译者：侯捷，海峡两岸著名的电脑技术自由作家，对于技术的钻研和发表，有独特的品性与坚持。作品涵盖著、译、评三方面，散见于各种刊特、媒体、网站论坛，深受读者喜爱和尊敬。
+<br />
+<ul id="txtComment">
+
+</ul>
+<textarea id="txtContent" rows="20" cols="60"></textarea><br />
+<input type="button" value="发布评论" id="btn" /><br />
+<a href="/Cart.aspx?bookId=4948"><img src="/Images/Common/buy.gif" /></a>
+
+</body>
+</html>

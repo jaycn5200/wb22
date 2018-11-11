@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>框架设计（第2版）：CLR Via C#</title>
+    <script src="/js/jquery-1.7.1.js" type="text/javascript"></script><!--在模板文件中使用外部文件时一定要用决对路径-->
+    <script type="text/javascript">
+        $(function () {
+
+            loadComment();//加载评论
+            $("#btn").click(function () {
+                var msg = $("#txtContent").val();
+                if (msg != "") {
+                    $.post("/ashx/BookComment.ashx", { "action": "postComment", "msg": msg, "bookId": 4946 }, function (data) {
+                        if (data == "yes") {
+                            alert("评论成功");
+                        }
+                    });
+                } else {
+                    alert("请输入内容!!")
+                }
+            });
+        });
+
+        function loadComment() {
+            $.post("/ashx/BookComment.ashx", { "action": "load", "bookId": 4946 }, function (data) {
+                var comments = $.parseJSON(data);
+                for (var i = 0; i < comments.length; i++) {
+                    $("<li>" + comments[i].CreateDateTime + ":" + comments[i].Msg + "</li>").appendTo("#txtComment");
+                }
+
+            });
+        }
+    </script>
+</head>
+<body>
+
+作为深受编程人员爱戴和尊敬的编程专家，微软.NET开发团队的顾问，本书作者Jeffrey Richter针对开发各种应用程序（如Web Form、Windows Form和Web服务、Microsoft SQL Server解决方案、控制台应用程序、NT Service）的开发人员，深入揭示了公共语言运行库（CLR）和.NET Framework.，演示了如何将这些知识应用到实际开发。全书分5部分，共24章。第Ⅰ部分讲述CLR基础，第Ⅱ部分介绍类型的使用，第Ⅲ部分说明类型的设计，第Ⅳ部分介绍基本类型，第Ⅴ部分讲述CLR实用特性。 <br>    通过本书的阅读，读者可以掌握CLR精髓，轻松、高效地创建高性能应用程序。
+<br />
+<ul id="txtComment">
+
+</ul>
+<textarea id="txtContent" rows="20" cols="60"></textarea><br />
+<input type="button" value="发布评论" id="btn" /><br />
+<a href="/Cart.aspx?bookId=4946"><img src="/Images/Common/buy.gif" /></a>
+
+</body>
+</html>

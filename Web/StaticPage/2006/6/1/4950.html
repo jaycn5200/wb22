@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Visual C# 2005从入门到精通</title>
+    <script src="/js/jquery-1.7.1.js" type="text/javascript"></script><!--在模板文件中使用外部文件时一定要用决对路径-->
+    <script type="text/javascript">
+        $(function () {
+
+            loadComment();//加载评论
+            $("#btn").click(function () {
+                var msg = $("#txtContent").val();
+                if (msg != "") {
+                    $.post("/ashx/BookComment.ashx", { "action": "postComment", "msg": msg, "bookId": 4950 }, function (data) {
+                        if (data == "yes") {
+                            alert("评论成功");
+                        }
+                    });
+                } else {
+                    alert("请输入内容!!")
+                }
+            });
+        });
+
+        function loadComment() {
+            $.post("/ashx/BookComment.ashx", { "action": "load", "bookId": 4950 }, function (data) {
+                var comments = $.parseJSON(data);
+                for (var i = 0; i < comments.length; i++) {
+                    $("<li>" + comments[i].CreateDateTime + ":" + comments[i].Msg + "</li>").appendTo("#txtComment");
+                }
+
+            });
+        }
+    </script>
+</head>
+<body>
+
+Microsoft Visual C#功能强大、使用简单。本书全面介绍了如何利用Visual Studio2005和NET Framework来进行C#编程。作者将C#的各种特性娓娓道来，以范例导航的方式，通过大量的练习引导读者逐步构建Windows窗体应用程序，访问MicrosoftSQL Server数据库，开发ASP.NETWeb应用程序以及创建并使用Web服务。<br>    全书共6部分，28章，结构清晰、叙述清楚。所有练习均在Visual Studio2005简体中文版上进行过演练。无论是刚开始接触面向对象编程的新手，还是打算转移到C#的有经验的C、C++或者Java程序员，都可以从本书中汲取到新的知识。
+<br />
+<ul id="txtComment">
+
+</ul>
+<textarea id="txtContent" rows="20" cols="60"></textarea><br />
+<input type="button" value="发布评论" id="btn" /><br />
+<a href="/Cart.aspx?bookId=4950"><img src="/Images/Common/buy.gif" /></a>
+
+</body>
+</html>

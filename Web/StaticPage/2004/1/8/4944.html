@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>C程序设计语言（第3版·新版）</title>
+    <script src="/js/jquery-1.7.1.js" type="text/javascript"></script><!--在模板文件中使用外部文件时一定要用决对路径-->
+    <script type="text/javascript">
+        $(function () {
+
+            loadComment();//加载评论
+            $("#btn").click(function () {
+                var msg = $("#txtContent").val();
+                if (msg != "") {
+                    $.post("/ashx/BookComment.ashx", { "action": "postComment", "msg": msg, "bookId": 4944 }, function (data) {
+                        if (data == "yes") {
+                            alert("评论成功");
+                        }
+                    });
+                } else {
+                    alert("请输入内容!!")
+                }
+            });
+        });
+
+        function loadComment() {
+            $.post("/ashx/BookComment.ashx", { "action": "load", "bookId": 4944 }, function (data) {
+                var comments = $.parseJSON(data);
+                for (var i = 0; i < comments.length; i++) {
+                    $("<li>" + comments[i].CreateDateTime + ":" + comments[i].Msg + "</li>").appendTo("#txtComment");
+                }
+
+            });
+        }
+    </script>
+</head>
+<body>
+
+本书是由C语言的设计者Brian W.Kernighan和Dennis M.Ritchie编写的一部介绍标准C语言及其程序设计方法的权威性经典著作。全面、系统地讲述了C语言的各个特性及程序设计的基本方法，包括基本概念，类型和表达式、控制流、函数与程序结构、指针与数组、结构、输入与输出、UNIX系统接口、标准库等内容。本书的讲述深入浅出，配合典型例证，通俗易懂，实用性强，适合作为大专院校计算机专业或非计算机专业的C语言教材，也可以作为从事计算机相关软硬件开发的技术人员的参考书。
+<br />
+<ul id="txtComment">
+
+</ul>
+<textarea id="txtContent" rows="20" cols="60"></textarea><br />
+<input type="button" value="发布评论" id="btn" /><br />
+<a href="/Cart.aspx?bookId=4944"><img src="/Images/Common/buy.gif" /></a>
+
+</body>
+</html>
