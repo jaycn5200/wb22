@@ -6,7 +6,7 @@ using BookShop.Model;
 namespace BookShop.BLL
 {
 	/// <summary>
-	/// 业务逻辑类UserStatesManager 的摘要说明。
+	/// 业务逻辑类UserStatesManager 的摘要说明123123123。
 	/// </summary>
 	public class UserStateManager
 	{
