@@ -6,17 +6,17 @@ using BookShop.Model;
 namespace BookShop.BLL
 {
 	/// <summary>
-	/// ÒµÎñÂß¼­ÀàUserStatesManager µÄÕªÒªËµÃ÷123123123¡£
+	/// ä¸šåŠ¡é€»è¾‘ç±»UserStatesManager çš„æ‘˜3ã€‚
 	/// </summary>
 	public class UserStateManager
 	{
 		private readonly BookShop.DAL.UserStateServices dal=new BookShop.DAL.UserStateServices();
 		public UserStateManager()
 		{}
-		#region  ³ÉÔ±·½·¨
+		#region  æˆå‘˜æ–¹æ³•
 
 		/// <summary>
-		/// µÃµ½×î´óID
+		/// å¾—åˆ°æœ€å¤§ID
 		/// </summary>
 		public int GetMaxId()
 		{
@@ -24,7 +24,7 @@ namespace BookShop.BLL
 		}
 
 		/// <summary>
-		/// ÊÇ·ñ´æÔÚ¸Ã¼ÇÂ¼
+		/// æ˜¯å¦å­˜åœ¨è¯¥è®°å½•
 		/// </summary>
 		public bool Exists(int Id)
 		{
@@ -32,7 +32,7 @@ namespace BookShop.BLL
 		}
 
 		/// <summary>
-		/// Ôö¼ÓÒ»ÌõÊı¾İ
+		/// å¢åŠ ä¸€æ¡æ•°æ®
 		/// </summary>
 		public int  Add(BookShop.Model.UserState model)
 		{
@@ -40,7 +40,7 @@ namespace BookShop.BLL
 		}
 
 		/// <summary>
-		/// ¸üĞÂÒ»ÌõÊı¾İ
+		/// æ›´æ–°ä¸€æ¡æ•°æ®
 		/// </summary>
 		public void Update(BookShop.Model.UserState model)
 		{
@@ -48,7 +48,7 @@ namespace BookShop.BLL
 		}
 
 		/// <summary>
-		/// É¾³ıÒ»ÌõÊı¾İ
+		/// åˆ é™¤ä¸€æ¡æ•°æ®
 		/// </summary>
 		public void Delete(int Id)
 		{
@@ -57,7 +57,7 @@ namespace BookShop.BLL
 		}
 
 		/// <summary>
-		/// µÃµ½Ò»¸ö¶ÔÏóÊµÌå
+		/// å¾—åˆ°ä¸€ä¸ªå¯¹è±¡å®ä½“
 		/// </summary>
 		public BookShop.Model.UserState GetModel(int Id)
 		{
@@ -66,7 +66,7 @@ namespace BookShop.BLL
 		}
 
 		/// <summary>
-		/// µÃµ½Ò»¸ö¶ÔÏóÊµÌå£¬´Ó»º´æÖĞ¡£
+		/// å¾—åˆ°ä¸€ä¸ªå¯¹è±¡å®ä½“ï¼Œä»ç¼“å­˜ä¸­ã€‚
 		/// </summary>
 		public BookShop.Model.UserState GetModelByCache(int Id)
 		{
@@ -90,21 +90,21 @@ namespace BookShop.BLL
 		}
 
 		/// <summary>
-		/// »ñµÃÊı¾İÁĞ±í
+		/// è·å¾—æ•°æ®åˆ—è¡¨
 		/// </summary>
 		public DataSet GetList(string strWhere)
 		{
 			return dal.GetList(strWhere);
 		}
 		/// <summary>
-		/// »ñµÃÇ°¼¸ĞĞÊı¾İ
+		/// è·å¾—å‰å‡ è¡Œæ•°æ®
 		/// </summary>
 		public DataSet GetList(int Top,string strWhere,string filedOrder)
 		{
 			return dal.GetList(Top,strWhere,filedOrder);
 		}
 		/// <summary>
-		/// »ñµÃÊı¾İÁĞ±í
+		/// è·å¾—æ•°æ®åˆ—è¡¨
 		/// </summary>
 		public List<BookShop.Model.UserState> GetModelList(string strWhere)
 		{
@@ -112,7 +112,7 @@ namespace BookShop.BLL
 			return DataTableToList(ds.Tables[0]);
 		}
 		/// <summary>
-		/// »ñµÃÊı¾İÁĞ±í
+		/// è·å¾—æ•°æ®åˆ—è¡¨
 		/// </summary>
 		public List<BookShop.Model.UserState> DataTableToList(DataTable dt)
 		{
@@ -136,7 +136,7 @@ namespace BookShop.BLL
 		}
 
 		/// <summary>
-		/// »ñµÃÊı¾İÁĞ±í
+		/// è·å¾—æ•°æ®åˆ—è¡¨
 		/// </summary>
 		public DataSet GetAllList()
 		{
@@ -144,14 +144,14 @@ namespace BookShop.BLL
 		}
 
 		/// <summary>
-		/// »ñµÃÊı¾İÁĞ±í
+		/// è·å¾—æ•°æ®åˆ—è¡¨
 		/// </summary>
 		//public DataSet GetList(int PageSize,int PageIndex,string strWhere)
 		//{
 			//return dal.GetList(PageSize,PageIndex,strWhere);
 		//}
 
-		#endregion  ³ÉÔ±·½·¨
+		#endregion  æˆå‘˜æ–¹æ³•
 	}
 }
 
