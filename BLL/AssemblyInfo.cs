@@ -2,13 +2,13 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("ÒµÎñÂß¼­²ã-Maticsoft.Net.SystemFramework")]
-[assembly: AssemblyDescription("Maticsoft.Net.SystemFramework Ê¾ÀıÏîÄ¿Ô´Âë")]
+[assembly: AssemblyTitle("ä¸šåŠ¡é€»è¾‘å±‚-Maticsoft.Net.SystemFramework")]
+[assembly: AssemblyDescription("Maticsoft.Net.SystemFramework ç¤ºä¾‹é¡¹ç›®æºç ")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("ÀîÌìÆ½")]
+[assembly: AssemblyCompany("æå¤©å¹³")]
 [assembly: AssemblyProduct("http://www.maticsoft.com")]
 [assembly: AssemblyCopyright("Copyright (C) Maticsoft 2007")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: AssemblyVersion("2.0.0.0")]
-[assembly: AssemblyFileVersion("2.0.0.0")]
+[assembly: AssemblyFileVersion("2.0.0.0")]//sdasdasdasd
